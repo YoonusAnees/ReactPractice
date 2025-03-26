@@ -1,11 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrement, increment } from '../slices/counterSlice';
+import { decrement, increment, reset } from '../slices/counterSlice';
 import { Button, Text, View, StyleSheet } from 'react-native';  // Import from react-native
 
 export default function Index() {
   const count = useSelector((state: any) => state.counter.value);
   const dispatch = useDispatch();
+
+
+    function clear() {
+    dispatch(reset());  
+  }
 
   return (
     <View style={styles.container}>
@@ -20,6 +25,13 @@ export default function Index() {
         color="#dc3545"
       />
       <Text style={styles.countText}>{count}</Text>
+
+
+      <Button
+        title="Clear"
+        onPress={clear}  
+        color="#28a745"  
+      />
     </View>
   );
 }
